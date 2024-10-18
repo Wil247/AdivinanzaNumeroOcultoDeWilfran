@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Deviner le Nombre</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: black;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: lightgreen;
+        color: black;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    nav {
+        margin: 10px 0;
+    }
+
+    nav a {
+        color: black;
+        margin: 0 15px;
+        text-decoration: none;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="number"] {
+        width: 96.5%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #35424a;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #45a049;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: lightgreen;
+        color: black;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Jeu de Deviner le Nombre</h1>
+        <h3>Créé par Wilfran Luis Decena</h3>
+        <nav>
+            <a href="https://wil247.github.io/RuletaDeWilfran/">Sélection de Participant</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center;">Nombre à deviner : <span id="nombre-a-deviner"></span></h2>
+        <br>
+        <p>Nombre de tentatives restantes : <span id="tentatives-restantes">5</span></p>
+        <input type="number" id="input-nombre" placeholder="Entrez un nombre entre 1 et 100" min="1" max="100">
+        <button onclick="verifierNombre()">Entrer le nombre</button>
+        <br><br>
+        <button onclick="resetGame()">Réinitialiser</button>
+        <p id="message"></p>
+    </div>
+    <br><br>
+
+    <footer>
+        Créé par Wilfran Luis Decena
+    </footer>
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jeu de devinette de nombres</title>
+    </head>
+    <body>
+        <h1>Devinez le nombre entre 1 et 100 !</h1>
+        <p id="nombre-a-deviner">😀</p> <!-- Carita feliz por defecto -->
+        <input type="number" id="input-nombre" placeholder="Entrez un nombre" min="1" max="100">
+        <button onclick="verifierNombre()">Vérifier</button>
+        <button onclick="resetGame()">Recommencer</button>
+        <p>Tentatives restantes : <span id="tentatives-restantes"></span></p>
+        <p id="message"></p>
+    
+        <script>
+            let nombreADeviner;
+            let tentativesRestantes;
+    
+            function resetGame() {
+                nombreADeviner = Math.floor(Math.random() * 100) + 1;
+                tentativesRestantes = 5;
+                document.getElementById("tentatives-restantes").innerText = tentativesRestantes;
+                document.getElementById("input-nombre").value = '';
+                document.getElementById("message").innerText = '';
+                document.getElementById("nombre-a-deviner").innerText = "😀"; // Carita feliz al reiniciar
+            }
+    
+            function verifierNombre() {
+                const inputNombre = parseInt(document.getElementById("input-nombre").value);
+                tentativesRestantes--;
+    
+                if (inputNombre === nombreADeviner) {
+                    document.getElementById("message").innerText = "Félicitations ! Vous avez deviné le nombre !";
+                    document.getElementById("nombre-a-deviner").innerText = nombreADeviner; // Montre le nombre
+                } else if (tentativesRestantes === 0) {
+                    document.getElementById("message").innerText = "Désolé, vous n'avez plus de tentatives. Le nombre était " +
+                        nombreADeviner + ".";
+                    document.getElementById("nombre-a-deviner").innerText = nombreADeviner; // Montre le nombre à la fin
+                } else if (inputNombre < nombreADeviner) {
+                    document.getElementById("message").innerText = "Trop bas !";
+                } else {
+                    document.getElementById("message").innerText = "Trop élevé !";
+                }
+    
+                document.getElementById("tentatives-restantes").innerText = tentativesRestantes;
+            }
+    
+            // Initialiser le jeu au chargement de la page
+            window.onload = resetGame;
+        </script>
+    </body>
+    </html>
+    
+
+</body>
+
+</html>
